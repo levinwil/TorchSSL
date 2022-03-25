@@ -18,14 +18,14 @@ class Get_Scalar:
     return self.value
 
 
-def consistency_loss(logits_s, logits_w, class_acc, y_lb, p_target, p_model, name='ce',
+def consistency_loss(logits_s, logits_w, class_acc, y_lb, args, p_target, p_model, name='ce',
                      T=1.0, p_cutoff=0.0, use_hard_labels=True, use_DA=False):
   assert name in ['ce', 'L2']
   logits_w = logits_w.detach()
   label_counter_dict = dict(Counter(y_lb))
   logits_inflation_factor = np.array(list(label_counter_dict.values())).astype('uint8') ** .5
   logits_inflation_factor /= np.max(logits_inflation_factor)
-  logits_inflation_factor = torch.from_numpy(logits_inflation_factor).view(1, -1)
+  logits_inflation_factor = torch.from_numpy(logits_inflation_factor).view(1, -1).cuda(args.gpu)
 
   logits_s, logits_w = logits_s / logits_inflation_factor, logits_w / logits_inflation_factor
 

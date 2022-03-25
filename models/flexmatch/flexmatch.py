@@ -172,6 +172,7 @@ class FlexMatch:
                                                                                 logits_x_ulb_w,
                                                                                 classwise_acc,
                                                                                 y_lb,
+                                                                                args,
                                                                                 p_target,
                                                                                 p_model,
                                                                                 'ce', T, p_cutoff,
