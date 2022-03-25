@@ -23,7 +23,7 @@ def consistency_loss(logits_s, logits_w, class_acc, y_lb, p_target, p_model, nam
   assert name in ['ce', 'L2']
   logits_w = logits_w.detach()
   label_counter_dict = dict(Counter(y_lb))
-  logits_inflation_factor = np.array(list(label_counter_dict.values())) ** .5
+  logits_inflation_factor = np.array(list(label_counter_dict.values())).astype('uint8') ** .5
   logits_inflation_factor /= np.max(logits_inflation_factor)
 
   for j in range(len(logits_inflation_factor)):
