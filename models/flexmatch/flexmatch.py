@@ -171,7 +171,6 @@ class FlexMatch:
                 unsup_loss, mask, select, pseudo_lb, p_model = consistency_loss(logits_x_ulb_s,
                                                                                 logits_x_ulb_w,
                                                                                 classwise_acc,
-                                                                                y_lb,
                                                                                 args,
                                                                                 p_target,
                                                                                 p_model,
