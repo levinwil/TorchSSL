@@ -27,8 +27,8 @@ def consistency_loss(logits_s, logits_w, class_acc, y_lb, p_target, p_model, nam
   logits_inflation_factor /= np.max(logits_inflation_factor)
 
   for j in range(len(logits_inflation_factor)):
-    logits_s[:, j] /= logits_inflation_factor
-    logits_w[:, j] /= logits_inflation_factor
+    logits_s[:, j] /= logits_inflation_factor[j]
+    logits_w[:, j] /= logits_inflation_factor[j]
 
   if name == 'L2':
     assert logits_w.size() == logits_s.size()
