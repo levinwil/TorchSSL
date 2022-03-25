@@ -28,8 +28,12 @@ def consistency_loss(logits_s, logits_w, class_acc, y_lb, args, p_target, p_mode
       label_counter_dict[j] = 1
   logits_order = np.argsort(list(label_counter_dict.keys()))
   logits_inflation_factor = np.array(list(label_counter_dict.values())).astype('uint8')[logits_order] ** .5
+  print(logits_inflation_factor)
   logits_inflation_factor /= np.max(logits_inflation_factor)
+  print(logits_inflation_factor)
   logits_inflation_factor = torch.from_numpy(logits_inflation_factor).view(1, -1).cuda(args.gpu)
+  print(logits_inflation_factor)
+  print()
 
   logits_s, logits_w = logits_s / logits_inflation_factor, logits_w / logits_inflation_factor
 
