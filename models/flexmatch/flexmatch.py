@@ -26,7 +26,7 @@ class FlexMatch:
         class Flexmatch contains setter of data_loader, optimizer, and model update methods.
         Args:
             net_builder: backbone network class (see net_builder in utils.py)
-            num_classes: # of label classes 
+            num_classes: # of label classes
             ema_m: momentum of exponential moving average for eval_model
             T: Temperature scaling parameter for output sharpening (only when hard_label = False)
             p_cutoff: confidence cutoff parameters for loss masking
@@ -171,6 +171,7 @@ class FlexMatch:
                 unsup_loss, mask, select, pseudo_lb, p_model = consistency_loss(logits_x_ulb_s,
                                                                                 logits_x_ulb_w,
                                                                                 classwise_acc,
+                                                                                y_lb,
                                                                                 p_target,
                                                                                 p_model,
                                                                                 'ce', T, p_cutoff,
